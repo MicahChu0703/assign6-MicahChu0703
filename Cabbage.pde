@@ -1,37 +1,36 @@
-class Cabbage extends Item{
-	// Requirement #1: Complete Cabbage Class
-  Cabbage(float x,float y){
+class Clock extends Item{
+	// Requirement #2: Complete Clock Class
+  Clock(float x,float y){
     super(x,y);
+  }
+  
+  void display(){
+    if(isAlive){
+    image(clock,x,y);
     }
-    void display(){
-      if(isAlive){
-      image(cabbage, x, y);
-      }
-    }
-    void checkCollision(Player player){     
-    if(isAlive && player.health < player.PLAYER_MAX_HEALTH && isHit(x, y, w, h, player.x, player.y, player.w, player.h)){
-        player.health++;
+  }
+  void checkCollision(Player player){     
+    if(isAlive && isHit(x, y, w, h, player.x, player.y, player.w, player.h)){
+        addTime(15);
         isAlive=false;
     } 
-    }
+   }
 	/*
 	Code for Reference:
 
-		for(int i = 0; i < cabbageX.length; i++){
+		for(int i = 0; i < clockX.length; i++){
 
-			// Display Cabbage
-			image(cabbage, cabbageX[i], cabbageY[i]);
+			// Display Clock
+			image(clock, clockX[i], clockY[i]);
 
 			// Check collision with player
-			if(player.health < player.PLAYER_MAX_HEALTH
-			&& isHit(cabbageX[i], cabbageY[i], SOIL_SIZE, SOIL_SIZE, player.x, player.y, player.w, player.h)){
+		    if(isHit(clockX[i], clockY[i], SOIL_SIZE, SOIL_SIZE, player.x, player.y, player.w, player.h)){
 
-				player.health ++;
-				cabbageX[i] = cabbageY[i] = -1000; // Now that they're objects, toggle isAlive instead of throwing them away from screen
+				addTime(CLOCK_BONUS_SECONDS);
+				clockX[i] = clockY[i] = -1000; // Now that they're objects, toggle isAlive instead of throwing them away from screen
 
 			}
 
 		}
-
 	*/
 }
