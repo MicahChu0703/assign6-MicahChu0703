@@ -149,11 +149,11 @@ void initGame(){
 		float newY = SOIL_SIZE * ( i * 4 + floor(random(4)));
 
 		switch(i){
-			case 0: case 1: enemies[i] = new Soldier(newX, newY); 
+			case 0: case 1: enemies[i] = new Soldier(newX, newY); break;
 // Requirement 4: Create new Dinosaur in row 9 - 16 
-			case 2: case 3: enemies[i] = new Dinosaur(newX, newY); 
+			case 2: case 3: enemies[i] = new Dinosaur(newX, newY); break;
 // Requirement 5: Create new Robot in row 17 - 25
-			case 4: case 5: enemies[i] = new Robot(newX, newY); 
+			case 4: case 5: enemies[i] = new Robot(newX, newY); break;
 
 		}
 
