@@ -2,7 +2,7 @@ class Robot extends Enemy{
 	// Requirement #5: Complete Dinosaur Class
   float speed = 2f;
   int direction;
-  
+  Laser laser = new Laser();
   Robot(float x,float y){
    super(x,y); 
   }
@@ -12,13 +12,19 @@ class Robot extends Enemy{
     if(x >= width-w || x<0) {
     speed *=-1 ;}
     if(abs(player.row*SOIL_SIZE-y)<=PLAYER_DETECT_RANGE_ROW*SOIL_SIZE){
-    if(player.x<x && direction==LEFT||player.x>x && direction==RIGHT){
-    speed=0;}
-    else{speed=(speed>=0)?1f:-1f;}
+    if(player.x<x && direction==LEFT||player.x>x && direction==RIGHT){speed=0;    
+    laser.fire(x+HAND_OFFSET_X_FORWARD,y+HAND_OFFSET_Y,player.x,player.y); 
     }
+    }
+    else{speed=(speed>0)?2f:-2f;}
+    laser.update();  
+
+    
   }
   void display(){
-    direction = (speed > 0)?RIGHT:LEFT;
+    if(speed==0 && x<player.x){direction=RIGHT;}
+    if(speed > 0 ){direction=RIGHT;}
+    if(speed < 0 ){direction=LEFT;}
     pushMatrix();
     if (direction == LEFT){
     translate(x+w,y);
@@ -30,6 +36,8 @@ class Robot extends Enemy{
     
     }
     popMatrix();  
+    laser.display();
+
 
 
   }
